@@ -4,12 +4,94 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="XamarinProject.Views.RegisterPage">
+             x:Class="XamarinProject.Views.RegisterPage"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView
+            Orientation="Vertical">
+            <StackLayout>
+                
+                <Image Source="mobile_login.png"
+                       HeightRequest="200" />
+
+                <Frame
+                    HeightRequest="1"
+                    Padding="0"
+                    WidthRequest="100"
+                    BackgroundColor="#c62828"
+                    />
+
+                <StackLayout
+                    Spacing="10"
+                    Margin="30, 30, 30, 30">
+
+
+                    <Frame
+                        CornerRadius="10"
+                        Padding="0"
+                        BackgroundColor="AliceBlue">
+                        <Entry
+                         HorizontalTextAlignment="Start"
+                         PlaceholderColor="#c62828"
+                         Placeholder="Username" 
+                         FontSize="Small"
+                         />
+                    </Frame>
+
+
+                    <Frame
+                        CornerRadius="10"
+                        Padding="0"
+                        BackgroundColor="AliceBlue">
+                        <Entry
+                         HorizontalTextAlignment="Start"
+                         PlaceholderColor="#c62828"
+                         Placeholder="Password"
+                         FontSize="Small"   />
+                    </Frame>
+
+                    <Frame
+                        CornerRadius="10"
+                        Padding="0"
+                        BackgroundColor="AliceBlue">
+                        <Entry
+                         HorizontalTextAlignment="Start"
+                         PlaceholderColor="#c62828"
+                         Placeholder="Confirm your password"
+                         FontSize="Small"   />
+                    </Frame>
+
+                    <Frame
+                        BorderColor="#8e0000"
+                        HasShadow="True"
+                        CornerRadius="10"
+                        Padding="0">
+                        <Button
+                            x:Name="SignUp"
+                            Clicked="SignUp_Clicked"
+                            BackgroundColor="Transparent"
+                            Text="Sign up"
+                            FontSize="Small"   />
+                    </Frame>
+
+                    <Frame
+                        BorderColor="#8e0000"
+                        HasShadow="True"
+                        CornerRadius="10"
+                        Padding="0">
+                        <Button
+                            x:Name="goBackButton"
+                            Clicked="goBackButton_Clicked"
+                            BackgroundColor="Transparent"
+                            Text="Already a user? Log in!"
+                            FontSize="Small"   />
+                    </Frame>
+
+
+                </StackLayout>
+
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

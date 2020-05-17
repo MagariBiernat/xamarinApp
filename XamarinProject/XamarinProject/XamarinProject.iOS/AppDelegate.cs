@@ -23,7 +23,9 @@ namespace XamarinProject.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            FormsControls.Touch.Main.Init();
             LoadApplication(new App());
+
 
             return base.FinishedLaunching(app, options);
         }

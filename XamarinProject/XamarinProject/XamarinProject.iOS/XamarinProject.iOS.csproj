@@ -133,4 +133,73 @@
       <Name>XamarinProject</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\notify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Group_chat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\chat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\typing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\mail_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\new_message.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\mobile_messages_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\message_sent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\messages1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\heavy_box.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\access_account.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\forgot_password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\mobile_login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\page_not_found.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\male_avatar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\female_avatar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\add_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\social.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\profile_data.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\profile_pic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\warning.png" />
+  </ItemGroup>
 </Project>
