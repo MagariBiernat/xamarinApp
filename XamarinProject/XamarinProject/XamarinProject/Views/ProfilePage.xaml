@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinProject.Views.ProfilePage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+
+                <Image
+                Source="profile.png"
+                HeightRequest="200"
+                />
+
+                <Frame
+                    HeightRequest="30"
+                    AnchorY="25"
+                    Padding="0"
+                    WidthRequest="100"
+                    BackgroundColor="#c62828"
+                    CornerRadius="150"
+                    />
+
+                <Label Text="Username : " />
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Frame Grid.Column="1"
+                       BorderColor="#c62828"
+                       Padding="0"
+                       CornerRadius="5">
+                        <Button BackgroundColor="Transparent" Text="About App"/>
+                    </Frame>
+                </Grid>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

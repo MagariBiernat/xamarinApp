@@ -15,8 +15,6 @@
                 Source="Login.png"
                     HeightRequest="200"
                 />
-
-
                 <Frame
                     HeightRequest="1"
                     Padding="0"
@@ -49,6 +47,7 @@
                         Padding="0"
                         BackgroundColor="AliceBlue">
                         <Entry
+                            x:Name="passwordEntry"
                          HorizontalTextAlignment="Start"
                          PlaceholderColor="#c62828"
                          Placeholder="Enter Your password"

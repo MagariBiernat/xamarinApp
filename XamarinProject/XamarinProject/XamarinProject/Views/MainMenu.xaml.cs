@@ -10,18 +10,37 @@ using Xamarin.Forms.Xaml;
 namespace XamarinProject.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainMenu : ContentPage
+    public partial class MainMenu : TabbedPage
     {
         public string Username { get; set; }
         public MainMenu()
         {
             InitializeComponent();
+  
         }
 
-        private async void LogOutButton_Clicked(object sender, EventArgs e)
+        public MainMenu(string _username)
         {
-            await Navigation.PopAsync();
+            InitializeComponent();
+
+            this.Username = _username;
         }
+
+        protected override void OnCurrentPageChanged()
+        {
+            base.OnCurrentPageChanged();
+
+            if (this.CurrentPage.Title == "Chat")
+            {
+                MessagingCenter.Send(this, "usernameChat", this.Username);
+            }
+            if(this.CurrentPage.Title == "Profile")
+            {
+                MessagingCenter.Send(this, "usernameProfile", this.Username);
+            }
+            
+        }
+
 
 
     }

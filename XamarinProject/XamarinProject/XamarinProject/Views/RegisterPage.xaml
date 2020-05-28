@@ -31,6 +31,7 @@
                         Padding="0"
                         BackgroundColor="AliceBlue">
                         <Entry
+                         x:Name="usernameEntry"
                          HorizontalTextAlignment="Start"
                          PlaceholderColor="#c62828"
                          Placeholder="Username" 
@@ -44,6 +45,7 @@
                         Padding="0"
                         BackgroundColor="AliceBlue">
                         <Entry
+                         x:Name="passwordFirstEntry"
                          HorizontalTextAlignment="Start"
                          PlaceholderColor="#c62828"
                          Placeholder="Password"
@@ -55,6 +57,7 @@
                         Padding="0"
                         BackgroundColor="AliceBlue">
                         <Entry
+                         x:Name="passwordSecondEntry"
                          HorizontalTextAlignment="Start"
                          PlaceholderColor="#c62828"
                          Placeholder="Confirm your password"
