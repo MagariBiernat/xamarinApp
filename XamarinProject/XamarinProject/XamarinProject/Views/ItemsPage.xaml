@@ -10,8 +10,6 @@
         <ToolbarItem Text="New Chat" Clicked="New_Chat_Clicked" />
     </ContentPage.ToolbarItems>
     <Grid>
-        
-            
         <StackLayout x:Name="layout" IsVisible="true" >
             <Image
                 Source="new_message.png"

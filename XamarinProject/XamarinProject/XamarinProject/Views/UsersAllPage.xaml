@@ -8,14 +8,49 @@
              Title="Huhuhu">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Huhuhu" />
+        <ToolbarItem Text="Cancel" x:Name="Cancel" Clicked="Cancel_Clicked" />
     </ContentPage.ToolbarItems>
-    
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+    <Grid>
+        <StackLayout x:Name="layout" IsVisible="false" >
+            <Image
+                Source="new_message.png"
+                HeightRequest="200"
+                IsVisible="true"
+                />
+            <Label 
+                Text="You do not have any messages!"
+                HorizontalOptions="CenterAndExpand"
+                />
         </StackLayout>
-    </ContentPage.Content>
+
+        <RefreshView IsVisible="true" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <CollectionView x:Name="ItemsCollectionView"
+                ItemsSource="{Binding Items}">
+                <d:CollectionView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>First Item</x:String>
+                        <x:String>Second Item</x:String>
+                        <x:String>Third Item</x:String>
+                        <x:String>Fourth Item</x:String>
+                        <x:String>Fifth Item</x:String>
+                        <x:String>Sixth Item</x:String>
+                    </x:Array>
+                </d:CollectionView.ItemsSource>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout HeightRequest="45" Padding="10" Orientation="Horizontal">
+                            <Image Source="male_avatar.png" />
+                            <Label Text="Andrzej Duda" VerticalOptions="Center"  Padding="15,5,0,5"/>
+                            <Button Text="Send message" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Padding="15,0"   />
+                            <StackLayout.GestureRecognizers>
+                                <!--<TapGestureRecognizer >
+                            </TapGestureRecognizer>-->
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
 </ContentPage>
