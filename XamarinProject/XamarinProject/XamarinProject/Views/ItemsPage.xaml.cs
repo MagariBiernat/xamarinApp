@@ -57,7 +57,7 @@ namespace XamarinProject.Views
 
         private async void New_Chat_Clicked(object sender, EventArgs e)
         {
-            await DisplayAlert("asdf", "adfafas", "ok");
+            await Navigation.PushModalAsync(new TabbedUsers(Username));
         }
     }
 }

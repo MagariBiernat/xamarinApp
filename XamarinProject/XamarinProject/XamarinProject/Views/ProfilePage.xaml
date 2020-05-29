@@ -15,15 +15,13 @@
                 />
 
                 <Frame
-                    HeightRequest="30"
-                    AnchorY="25"
+                    HeightRequest="2"
                     Padding="0"
                     WidthRequest="100"
                     BackgroundColor="#c62828"
-                    CornerRadius="150"
                     />
 
-                <Label Text="Username : " />
+                <Label HorizontalOptions="Center" Text="{Binding Username}" />
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -32,13 +30,22 @@
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
 
-
-                    <Frame Grid.Column="1"
+                    <StackLayout Grid.Column="1" VerticalOptions="End">
+                        <Frame 
+                            Margin="20, 0"
                        BorderColor="#c62828"
                        Padding="0"
                        CornerRadius="5">
-                        <Button BackgroundColor="Transparent" Text="About App"/>
-                    </Frame>
+                            <Button BackgroundColor="Transparent" Text="About App"/>
+                        </Frame>
+
+                        <Frame 
+                       BorderColor="#c62828"
+                       Padding="0"
+                       CornerRadius="5">
+                            <Button BackgroundColor="Transparent" Text="Log Out"/>
+                        </Frame>
+                    </StackLayout>
                 </Grid>
 
             </StackLayout>

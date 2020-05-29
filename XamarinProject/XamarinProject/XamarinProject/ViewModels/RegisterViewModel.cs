@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,9 +13,14 @@ namespace XamarinProject.ViewModels
             Title = "Register";
         }
 
-        public async Task<bool> RegisterUser(String username, String password)
+        public async Task<int> RegisterUser(String username, String password)
         {
-            return true;
+
+            //1 success
+            //0 different username
+            //else something is wrong
+
+            return 1;
         }
 
 

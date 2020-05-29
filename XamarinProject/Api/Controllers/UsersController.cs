@@ -34,6 +34,8 @@ namespace Api.Controllers
         public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
         {
             return await _context.Users.ToListAsync();
+
+
         }
 
         // GET: api/Users/5
