@@ -13,6 +13,8 @@ namespace XamarinProject.ViewModels
 
         private string title = string.Empty;
 
+        private bool IsVisible = false;
+
         private bool isBusy = false;
 
         public bool IsBusy
@@ -24,6 +26,12 @@ namespace XamarinProject.ViewModels
         {
             get { return title; }
             set { SetProperty(ref title, value); }
+        }
+
+        public bool isVisible
+        {
+            get { return IsVisible; }
+            set { SetProperty(ref IsVisible, value); }
         }
 
         protected bool SetProperty<T>(ref T backingStore, T value,

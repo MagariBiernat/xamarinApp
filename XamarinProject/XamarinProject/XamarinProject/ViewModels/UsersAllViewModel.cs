@@ -15,24 +15,26 @@ namespace XamarinProject.ViewModels
     {
         bool isOnlineModel = false;
 
+        public string Username { get; set; }
+
         public ObservableCollection<UserProfileModel> Items;
 
         public Command LoadItemsCommand { get; set; }
 
 
-        public UsersAllViewModel()
+        public UsersAllViewModel(bool isOnline)
         {
+
+            isOnlineModel = isOnline;
+
             Items = new ObservableCollection<UserProfileModel>();
 
             LoadItemsCommand = new Command(async () => await ExecuteLoadUsers());
+
+            
         }
 
-        public UsersAllViewModel(bool isOnline)
-        {
-            isOnlineModel = isOnline;
-        }
-
-        public async Task ExecuteLoadUsers()
+        async Task ExecuteLoadUsers()
         {
             IsBusy = true;
 
@@ -42,14 +44,19 @@ namespace XamarinProject.ViewModels
                 var items = await DataService.GetAllUsersAsync();
                 foreach(var item in items)
                 {
-                    if(isOnlineModel == true)
+                    if(item.Username != Username)
                     {
-                        if (item.isOnline == true)
+                        if (isOnlineModel == true)
                         {
-                            Items.Add(item);
+                            if (item.isOnline == true)
+                            {
+                                Items.Add(item);
+                            }
                         }
+                        else
+                             Items.Add(item);
                     }
-                    Items.Add(item);
+                    
                 }
             }catch(Exception ex)
             {
@@ -57,6 +64,7 @@ namespace XamarinProject.ViewModels
             }
             finally
             {
+                isVisible = !(Items.Count > 0);
                 IsBusy = false;
             }
         }

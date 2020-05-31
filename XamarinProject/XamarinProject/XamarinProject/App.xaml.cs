@@ -2,6 +2,7 @@
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinProject.Services;
 using XamarinProject.Views;
 
 namespace XamarinProject
@@ -21,10 +22,17 @@ namespace XamarinProject
 
         protected override void OnSleep()
         {
+            DataStore data = new DataStore();
+
+            // send query to make user offline
         }
 
         protected override void OnResume()
         {
+            DataStore data = new DataStore();
+
+            //send query to make user online again
+
         }
     }
 }

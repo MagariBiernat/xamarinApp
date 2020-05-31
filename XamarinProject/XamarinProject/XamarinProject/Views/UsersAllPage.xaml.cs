@@ -14,14 +14,17 @@ namespace XamarinProject.Views
     public partial class UsersAllPage : ContentPage
     {
         public UsersAllViewModel viewModel;
-        StackLayout sLayout;
         public UsersAllPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new UsersAllViewModel();   
+            viewModel = new UsersAllViewModel(false);
 
-            sLayout = layout;
+            viewModel.Username = Application.Current.Properties["username"].ToString();
+
+
+            BindingContext = viewModel;
+            
         }
 
         private async void Cancel_Clicked(object sender, EventArgs e)
@@ -31,18 +34,13 @@ namespace XamarinProject.Views
 
         protected override void OnAppearing()
         {
-            if (viewModel.Items.Count == 0)
-            {
-                IsBusy = true;
-
-                sLayout.IsVisible = true;
-            }
-            else
-                sLayout.IsVisible = false;
-
-            viewModel.IsBusy = true;
-
             base.OnAppearing();
+
+            if (viewModel.Items.Count == 0)
+                viewModel.IsBusy = true;
+
+
+            
         }
     }
 }

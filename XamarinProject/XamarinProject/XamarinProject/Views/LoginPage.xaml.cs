@@ -36,7 +36,9 @@ namespace XamarinProject.Views
             {
                 if (await viewModel.ExecuteLoggingIn( username.Text.ToString(), password.Text.ToString() ))
                 {
-                    var page = new MainMenu(username.Text.ToString());
+                    string Username = username.Text.ToString();
+                    Application.Current.Properties["username"] = Username;
+                    var page = new MainMenu(Username);
                     await Navigation.PushAsync(page);
                 }
                 else

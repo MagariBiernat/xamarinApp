@@ -22,13 +22,15 @@ namespace XamarinProject.Views
 
             viewModel = new ProfileViewModel();
 
-            MessagingCenter.Subscribe<MainMenu, string>(this, "usernameProfile", async (obj, message) =>
-            {
-                
-            });
+
+
+            viewModel.Username = Application.Current.Properties["username"].ToString();
+
+
+            BindingContext = viewModel;
         }
 
-        private async void LogOut_Clicked(object sender, EventArgs e)
+        private void LogOut_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "logout");
         }

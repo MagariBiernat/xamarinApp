@@ -18,11 +18,17 @@ namespace XamarinProject.Views
             InitializeComponent();
         }
 
-        public TabbedUsers(String _username)
+        public TabbedUsers(string _username)
         {
             InitializeComponent();
 
             Username = _username;
+        }
+        protected override void OnCurrentPageChanged()
+        {
+            base.OnCurrentPageChanged();
+
+
         }
     }
 }

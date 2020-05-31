@@ -14,17 +14,14 @@ namespace XamarinProject.Views
     public partial class MainMenu : TabbedPage
     {
         public string Username { get; set; }
-        public MainMenu()
-        {
-            InitializeComponent();
-  
-        }
+
 
         public MainMenu(string _username)
         {
             InitializeComponent();
 
-            this.Username = _username;
+            Username = _username;
+
 
             MessagingCenter.Subscribe<ProfilePage>(this, "logout", async (obj) =>
             {
@@ -39,11 +36,11 @@ namespace XamarinProject.Views
 
             if (this.CurrentPage.Title == "Chat")
             {
-                MessagingCenter.Send(this, "usernameChat", this.Username);
+                MessagingCenter.Send(this, "usernameChat", Username);
             }
             if(this.CurrentPage.Title == "Profile")
             {
-                MessagingCenter.Send(this, "usernameProfile", this.Username);
+                MessagingCenter.Send(this, "usernameProfile", Username);
             }
             
         }

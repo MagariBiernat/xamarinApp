@@ -44,6 +44,24 @@ namespace Api.Controllers
             //return await _context.Users.ToListAsync();
         }
 
+        [Route("login")]
+        [HttpPost]
+        public async Task<ActionResult> LoginAsync([FromBody] UsernamePasswordModel users)
+        {
+            if (UsernameExists(users.Username))
+            {
+                var user = _context.Users.FirstOrDefault(x => x.Username == users.Username);
+                if (user.Password == users.Password)
+                {
+                    await UpdateUserIsOnline(user.User_ID, "true");
+                    return StatusCode(202);
+                }
+            }
+
+            return BadRequest();
+        }
+
+
         // GET: api/Users/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Users>> GetUsers(int id)
@@ -89,35 +107,15 @@ namespace Api.Controllers
 
             return NoContent();
         }
-        [HttpPost("/login")]
-        public async Task<ActionResult<Users>> PostLogin(Users users)
-        {
-            if(UsernameExists(users.Username))
-            {
-                var user = _context.Users.FirstOrDefault(x => x.Username == users.Username);
-                if(user.Password == users.Password)
-                {
-                    await UpdateUserIsOnline(user.User_ID, user.Username, "true");
-                    return StatusCode(202);
-                }
-            }
 
-            return BadRequest();
-            
-        }
-        // POST: api/Users
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Users>> PostUsers(Users users)
+        public async Task<ActionResult<Users>> PostUsers([FromBody] UsernamePasswordModel users)
         {
             if (!UsernameExists(users.Username))
             {
-                var last_ID = _context.Users.Count<Users>() > 0 ? _context.Users.Last().User_ID : 0;
 
                 _context.Users.Add(new Users()
                 {
-                    User_ID = last_ID + 1,
                     Username = users.Username,
                     Password = users.Password,
                     IsOnline = "false"
@@ -146,13 +144,15 @@ namespace Api.Controllers
             return users;
         }
 
-        private async Task UpdateUserIsOnline(int id, string username, string isOnline)
+        private async Task UpdateUserIsOnline(int id, string isOnline)
         {
-            var user = new Users() { User_ID = id, Username = username, IsOnline = isOnline };
-            
-            _context.Users.Attach(user);
-            _context.Entry(user).Property(x => x.IsOnline).IsModified = true;
-            await _context.SaveChangesAsync();
+            var user = _context.Users.First(x => x.User_ID == id);
+
+            if(user != null)
+            {
+                user.IsOnline = isOnline;
+                await _context.SaveChangesAsync();
+            }
         }
         
 

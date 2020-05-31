@@ -48,7 +48,6 @@ namespace XamarinProject.Services
             {
                 var serializedUser = JsonConvert.SerializeObject(user);
 
-                //fix url
 
                 var response = await _client.PostAsync($"Users", new StringContent(serializedUser, Encoding.UTF8, "application/json"));
 
@@ -77,15 +76,6 @@ namespace XamarinProject.Services
         }
 
         //messages..
-
-
-
-
-
-
-
-
-
 
         public HttpClientHandler GetInsecureHandler()
         {

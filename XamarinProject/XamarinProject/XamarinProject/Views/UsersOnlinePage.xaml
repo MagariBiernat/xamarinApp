@@ -13,7 +13,7 @@
 
 
     <Grid>
-        <StackLayout x:Name="layout" IsVisible="false" >
+        <StackLayout x:Name="layout" IsVisible="{Binding isVisible}" >
             <Image
                 Source="new_message.png"
                 HeightRequest="200"
@@ -25,7 +25,7 @@
                 />
         </StackLayout>
 
-        <RefreshView IsVisible="true" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <RefreshView IsVisible="true" IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
             <CollectionView x:Name="ItemsCollectionView"
                 ItemsSource="{Binding Items}">
                 <d:CollectionView.ItemsSource>
@@ -41,9 +41,21 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout HeightRequest="45" Padding="10" Orientation="Horizontal">
-                            <Image Source="male_avatar.png" />
-                            <Label Text="{Binding Username}" VerticalOptions="Center" Margin="20,0"/>
-                            <Button Text="See message" HorizontalOptions="End" BackgroundColor="Transparent" Margin="30,0"  />
+
+                            <Label Text="{Binding Username}" 
+                                d:Text="{Binding .}"
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="16" />
+                            <Label Text="{Binding Username}" 
+                                d:Text="Item descripton"
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" />
+                            
+                            <!--<Image Source="male_avatar.png" />
+                            <Label Text="test" VerticalOptions="Center" Margin="20,0"/>
+                            <Button Text="See message" HorizontalOptions="End" BackgroundColor="Transparent" Margin="30,0"  />-->
                             <StackLayout.GestureRecognizers>
                                 <!--<TapGestureRecognizer >
                             </TapGestureRecognizer>-->

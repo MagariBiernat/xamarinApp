@@ -27,7 +27,7 @@
                     BackgroundColor="#c62828"
                     />
 
-                <Label HorizontalOptions="Center" Text="{Binding Username}" />
+                <Label HorizontalOptions="Center" Text="{Binding Username}" FontSize="Large" />
 
                 <Grid>
                     <Grid.ColumnDefinitions>

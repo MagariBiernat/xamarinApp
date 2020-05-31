@@ -19,9 +19,17 @@ namespace XamarinProject.Views
         public UsersOnlinePage()
         {
             InitializeComponent();
+            
+            viewModel = new UsersAllViewModel(true);
 
-            BindingContext = viewModel = new UsersAllViewModel(true);
+            viewModel.Username = Application.Current.Properties["username"].ToString();
+
+
+            BindingContext = viewModel;
+
             sLayout = layout;
+
+            
         }
 
         private async void Cancel_Clicked(object sender, EventArgs e)
@@ -31,16 +39,11 @@ namespace XamarinProject.Views
 
         protected override void OnAppearing()
         {
-            if (viewModel.Items.Count == 0)
-            {
-                sLayout.IsVisible = true;
-            }
-            else
-                sLayout.IsVisible = false;
-
-            viewModel.IsBusy = true;
 
             base.OnAppearing();
+
+            if (viewModel.Items.Count == 0)
+                viewModel.IsBusy = true;
         }
     }
 }
