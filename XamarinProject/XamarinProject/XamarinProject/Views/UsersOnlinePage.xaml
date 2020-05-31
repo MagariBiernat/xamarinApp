@@ -42,7 +42,7 @@
                     <DataTemplate>
                         <StackLayout HeightRequest="45" Padding="10" Orientation="Horizontal">
                             <Image Source="male_avatar.png" />
-                            <Label Text="Andrzej Duda" VerticalOptions="Center" Margin="20,0"/>
+                            <Label Text="{Binding Username}" VerticalOptions="Center" Margin="20,0"/>
                             <Button Text="See message" HorizontalOptions="End" BackgroundColor="Transparent" Margin="30,0"  />
                             <StackLayout.GestureRecognizers>
                                 <!--<TapGestureRecognizer >

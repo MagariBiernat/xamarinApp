@@ -16,7 +16,6 @@ namespace Api.DataAccess
         [Required]
         public int User_ID { get; set; }
 
-
         [Column("Username")]
         [Required]
         [StringLength(40)]

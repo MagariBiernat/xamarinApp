@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace XamarinProject.Views
@@ -24,6 +25,12 @@ namespace XamarinProject.Views
             InitializeComponent();
 
             this.Username = _username;
+
+            MessagingCenter.Subscribe<ProfilePage>(this, "logout", async (obj) =>
+            {
+                await Navigation.PopAsync();
+            });
+
         }
 
         protected override void OnCurrentPageChanged()

@@ -32,8 +32,6 @@ namespace XamarinProject.Views
 
         private async void LogInButton_Clicked(object sender, EventArgs e)
         {
-
-
             if(validateIfEmpty())
             {
                 if (await viewModel.ExecuteLoggingIn( username.Text.ToString(), password.Text.ToString() ))

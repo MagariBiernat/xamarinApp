@@ -12,7 +12,7 @@
     </ContentPage.ToolbarItems>
 
     <Grid>
-        <StackLayout x:Name="layout" IsVisible="false" >
+        <StackLayout x:Name="layout" IsVisible="true" >
             <Image
                 Source="new_message.png"
                 HeightRequest="200"
@@ -41,7 +41,7 @@
                     <DataTemplate>
                         <StackLayout HeightRequest="45" Padding="10" Orientation="Horizontal">
                             <Image Source="male_avatar.png" />
-                            <Label Text="Andrzej Duda" VerticalOptions="Center"  Padding="15,5,0,5"/>
+                            <Label Text="{Binding Username}" VerticalOptions="Center"  Padding="15,5,0,5"/>
                             <Button Text="Send message" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Padding="15,0"   />
                             <StackLayout.GestureRecognizers>
                                 <!--<TapGestureRecognizer >

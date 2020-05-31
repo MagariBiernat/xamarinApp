@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Api.DataAccess;
+using Api.Models;
 
 namespace Api.Controllers
 {
@@ -20,22 +21,27 @@ namespace Api.Controllers
             _context = context;
         }
 
-        private static async void addSomeUsers(AppDbContext _context)
-        {
-             _context.Users.Add(new Users() { Username = "test123", Password = "test123", IsOnline = "no" });
-             _context.Users.Add(new Users() { Username = "test1234", Password = "test1234", IsOnline = "no" });
-             _context.Users.Add(new Users() { Username = "test12345", Password = "test12345", IsOnline = "no" });
 
-            await _context.SaveChangesAsync();
-        }
 
         // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<UsersProfile>>> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+            var Users = await _context.Users.ToListAsync();
+            List<UsersProfile> list = new List<UsersProfile>();
 
+            foreach(var item in Users)
+            {
+                list.Add(new UsersProfile()
+                {
+                    Id = item.User_ID,
+                    Username = item.Username,
+                    isOnline = item.IsOnline == "true" ? true : false
+                });
+            }
 
+            return list;
+            //return await _context.Users.ToListAsync();
         }
 
         // GET: api/Users/5
@@ -83,7 +89,22 @@ namespace Api.Controllers
 
             return NoContent();
         }
+        [HttpPost("/login")]
+        public async Task<ActionResult<Users>> PostLogin(Users users)
+        {
+            if(UsernameExists(users.Username))
+            {
+                var user = _context.Users.FirstOrDefault(x => x.Username == users.Username);
+                if(user.Password == users.Password)
+                {
+                    await UpdateUserIsOnline(user.User_ID, user.Username, "true");
+                    return StatusCode(202);
+                }
+            }
 
+            return BadRequest();
+            
+        }
         // POST: api/Users
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -92,14 +113,21 @@ namespace Api.Controllers
         {
             if (!UsernameExists(users.Username))
             {
-                _context.Users.Add(users);
+                var last_ID = _context.Users.Count<Users>() > 0 ? _context.Users.Last().User_ID : 0;
+
+                _context.Users.Add(new Users()
+                {
+                    User_ID = last_ID + 1,
+                    Username = users.Username,
+                    Password = users.Password,
+                    IsOnline = "false"
+                }) ;
                 await _context.SaveChangesAsync();
 
-                return CreatedAtAction("GetUsers", new { id = users.User_ID }, users);
+                return StatusCode(202);
             }
             else
-                return BadRequest("usernameExistsError");
-            
+                return StatusCode(204);
         }
 
         // DELETE: api/Users/5
@@ -117,6 +145,16 @@ namespace Api.Controllers
 
             return users;
         }
+
+        private async Task UpdateUserIsOnline(int id, string username, string isOnline)
+        {
+            var user = new Users() { User_ID = id, Username = username, IsOnline = isOnline };
+            
+            _context.Users.Attach(user);
+            _context.Entry(user).Property(x => x.IsOnline).IsModified = true;
+            await _context.SaveChangesAsync();
+        }
+        
 
         private bool UsernameExists(string Username)
         {

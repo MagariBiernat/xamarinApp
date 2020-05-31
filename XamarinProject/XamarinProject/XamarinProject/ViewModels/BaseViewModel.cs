@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using XamarinProject.Services;
 
 namespace XamarinProject.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        // public DataServi ce
+        public DataStore DataService = new DataStore();
 
         private string title = string.Empty;
 

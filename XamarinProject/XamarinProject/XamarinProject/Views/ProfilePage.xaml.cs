@@ -27,5 +27,10 @@ namespace XamarinProject.Views
                 
             });
         }
+
+        private async void LogOut_Clicked(object sender, EventArgs e)
+        {
+            MessagingCenter.Send(this, "logout");
+        }
     }
 }

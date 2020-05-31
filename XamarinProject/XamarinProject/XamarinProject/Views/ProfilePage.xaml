@@ -5,6 +5,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="XamarinProject.Views.ProfilePage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Log Out" x:Name="LogOut" Clicked="LogOut_Clicked" />
+    </ContentPage.ToolbarItems>
+    
+    
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
@@ -39,12 +45,7 @@
                             <Button BackgroundColor="Transparent" Text="About App"/>
                         </Frame>
 
-                        <Frame 
-                       BorderColor="#c62828"
-                       Padding="0"
-                       CornerRadius="5">
-                            <Button BackgroundColor="Transparent" Text="Log Out"/>
-                        </Frame>
+                      
                     </StackLayout>
                 </Grid>
 
