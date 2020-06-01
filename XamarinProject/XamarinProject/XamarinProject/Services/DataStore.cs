@@ -100,16 +100,19 @@ namespace XamarinProject.Services
 
         public async Task<bool> SendAMessage(MessageModel message)
         {
-            if( (message != null) || !IsConnected)
+            if ((message != null) || !IsConnected)
             {
                 var serializedMessage = JsonConvert.SerializeObject(message);
 
                 var response = await _client.PostAsync($"Messages", new StringContent(serializedMessage, Encoding.UTF8, "application/json"));
 
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                    return false;
             }
-
-
-
             return false;
         }
 

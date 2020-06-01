@@ -38,10 +38,16 @@ namespace XamarinProject.ViewModels
                 Value = MessageValue,
                 From = Username,
                 To = Item.Username
-            }
-            var response = await DataService.SendAMessage(message);
+            };
 
-            return false;
+            try
+            {
+                return await DataService.SendAMessage(message);
+            }catch(Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+                return false;
+            }
         }
     }
 }
