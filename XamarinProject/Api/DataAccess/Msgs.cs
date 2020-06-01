@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Api.DataAccess
 {
-    [Table("Messages")]
-    public class Messages
+    [Table("Msgs")]
+    public class Msgs
     {
         [Column("Message_ID")]
         [Key]
@@ -22,9 +22,12 @@ namespace Api.DataAccess
         public string Value { get; set; }
 
         [Required]
-        public int CustomerID_From { get; set; }
+        public int User_ID_From { get; set; }
 
         [Required]
-        public int CustomerID_To { get; set; }
+        public int User_ID_To { get; set; }
+
+        [Required]
+        public bool Read { get; set; }
     }
 }

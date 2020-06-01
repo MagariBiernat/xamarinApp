@@ -10,7 +10,7 @@
         <ToolbarItem Text="New Chat" Clicked="New_Chat_Clicked" />
     </ContentPage.ToolbarItems>
     <Grid>
-        <StackLayout x:Name="layout" IsVisible="true" >
+        <StackLayout x:Name="layout" IsVisible="{Binding isVisible}" >
             <Image
                 Source="new_message.png"
                 HeightRequest="200"
@@ -21,8 +21,8 @@
                 HorizontalOptions="CenterAndExpand"
                 />
         </StackLayout>
-        
-        <RefreshView IsVisible="true" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+
+        <RefreshView IsVisible="true" IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
             <CollectionView x:Name="ItemsCollectionView"
                 ItemsSource="{Binding Items}">
                 <d:CollectionView.ItemsSource>
@@ -37,8 +37,10 @@
                 </d:CollectionView.ItemsSource>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="15">
-                            <Label Text="test"/>
+                        <StackLayout Padding="15" HeightRequest="55" Orientation="Horizontal">
+                            <Image Source="notify" />
+                            <Label Text="New msg from :" VerticalOptions="Center"  />
+                            <Label VerticalOptions="Center" Text="{Binding From}" TextColor="Black" />
                             <StackLayout.GestureRecognizers>
                                 <!--<TapGestureRecognizer >
                             </TapGestureRecognizer>-->

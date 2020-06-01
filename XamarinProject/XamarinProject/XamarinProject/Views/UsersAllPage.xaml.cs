@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinProject.Models;
 using XamarinProject.ViewModels;
 
 namespace XamarinProject.Views
@@ -13,17 +14,18 @@ namespace XamarinProject.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UsersAllPage : ContentPage
     {
-        public UsersAllViewModel viewModel;
+        UsersAllViewModel viewModel;
         public UsersAllPage()
         {
             InitializeComponent();
 
-            viewModel = new UsersAllViewModel(false);
+            viewModel = new UsersAllViewModel(false)
+            {
+                Username = Application.Current.Properties["username"].ToString()
+            };
 
-            viewModel.Username = Application.Current.Properties["username"].ToString();
 
-
-            BindingContext = viewModel;
+            BindingContext = this.viewModel;
             
         }
 
@@ -37,10 +39,14 @@ namespace XamarinProject.Views
             base.OnAppearing();
 
             if (viewModel.Items.Count == 0)
-                viewModel.IsBusy = true;
+                viewModel.IsBusy = true; 
+        }
 
-
-            
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            var layout = (BindableObject)sender;
+            var item = (UserProfileModel)layout.BindingContext;
+            await Navigation.PushModalAsync(new UserProfilePage(new UserProfileViewModel(item)));
         }
     }
 }

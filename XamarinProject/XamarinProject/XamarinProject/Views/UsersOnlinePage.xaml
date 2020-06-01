@@ -40,25 +40,12 @@
                 </d:CollectionView.ItemsSource>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout HeightRequest="45" Padding="10" Orientation="Horizontal">
-
-                            <Label Text="{Binding Username}" 
-                                d:Text="{Binding .}"
-                                LineBreakMode="NoWrap" 
-                                Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="16" />
-                            <Label Text="{Binding Username}" 
-                                d:Text="Item descripton"
-                                LineBreakMode="NoWrap"
-                                Style="{DynamicResource ListItemDetailTextStyle}"
-                                FontSize="13" />
-                            
-                            <!--<Image Source="male_avatar.png" />
-                            <Label Text="test" VerticalOptions="Center" Margin="20,0"/>
-                            <Button Text="See message" HorizontalOptions="End" BackgroundColor="Transparent" Margin="30,0"  />-->
+                        <StackLayout HeightRequest="55" Padding="10" Orientation="Horizontal">
+                            <Image Source="female_avatar.png" />
+                            <Label Text="{Binding Username}" VerticalOptions="Center" Margin="20,0"/>
                             <StackLayout.GestureRecognizers>
-                                <!--<TapGestureRecognizer >
-                            </TapGestureRecognizer>-->
+                                <!--<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped">
+                                </TapGestureRecognizer>-->
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </DataTemplate>

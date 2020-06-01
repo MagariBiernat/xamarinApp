@@ -30,7 +30,7 @@ namespace Api.Controllers
             var Users = await _context.Users.ToListAsync();
             List<UsersProfile> list = new List<UsersProfile>();
 
-            foreach(var item in Users)
+            foreach (var item in Users)
             {
                 list.Add(new UsersProfile()
                 {
@@ -53,7 +53,7 @@ namespace Api.Controllers
                 var user = _context.Users.FirstOrDefault(x => x.Username == users.Username);
                 if (user.Password == users.Password)
                 {
-                    await UpdateUserIsOnline(user.User_ID, "true");
+                    await UpdateUserIsOnline(user.Username, "true");
                     return StatusCode(202);
                 }
             }
@@ -119,7 +119,7 @@ namespace Api.Controllers
                     Username = users.Username,
                     Password = users.Password,
                     IsOnline = "false"
-                }) ;
+                });
                 await _context.SaveChangesAsync();
 
                 return StatusCode(202);
@@ -144,17 +144,45 @@ namespace Api.Controllers
             return users;
         }
 
-        private async Task UpdateUserIsOnline(int id, string isOnline)
-        {
-            var user = _context.Users.First(x => x.User_ID == id);
 
-            if(user != null)
+
+        [Route("/offline")]
+        [HttpGet("{username}")]
+        public async Task UserIsOffline(string username)
+        {
+            var user = _context.Users.First(x => x.Username == username);
+
+            if (user != null)
+            {
+                user.IsOnline = "false";
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        [Route("/online")]
+        [HttpGet("{username}")]
+        public async Task UserIsOnline(string username)
+        {
+            var user = _context.Users.First(x => x.Username == username);
+
+            if (user != null)
+            {
+                user.IsOnline = "true";
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        private async Task UpdateUserIsOnline(string username, string isOnline)
+        {
+            var user = _context.Users.First(x => x.Username == username);
+
+            if (user != null)
             {
                 user.IsOnline = isOnline;
                 await _context.SaveChangesAsync();
             }
         }
-        
+
 
         private bool UsernameExists(string Username)
         {

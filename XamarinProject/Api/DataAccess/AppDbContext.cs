@@ -13,6 +13,7 @@ namespace Api.DataAccess
 
         }
         public DbSet<Users> Users { get; set; }
-        public DbSet<Messages> Messages { get; set; }
+        
+        public DbSet<Msgs> Msgs { get; set; }
     }
 }

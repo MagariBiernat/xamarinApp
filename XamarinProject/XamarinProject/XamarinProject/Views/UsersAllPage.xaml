@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="XamarinProject.Views.UsersAllPage"
-             Title="Huhuhu">
+             Title="{Binding Title}">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Cancel" x:Name="Cancel" Clicked="Cancel_Clicked" />
@@ -39,24 +39,12 @@
                 </d:CollectionView.ItemsSource>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout HeightRequest="65" BackgroundColor="AliceBlue"  Padding="10" Orientation="Horizontal">
-                            <!--<Label Text="{Binding Username}" 
-                                d:Text="{Binding .}"
-                                LineBreakMode="NoWrap" 
-                                Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="16" />
-                            <Label Text="{Binding Username}" 
-                                d:Text="Item descripton"
-                                LineBreakMode="NoWrap"
-                                Style="{DynamicResource ListItemDetailTextStyle}"
-                                FontSize="13" />-->
-                            
+                        <StackLayout HeightRequest="55" Padding="10" Orientation="Horizontal">
                             <Image Source="male_avatar.png" />
-                            <Label Text="{Binding Items.Username}" VerticalOptions="Center"  Padding="15,5,0,5"/>
-                            <Button Text="Send message" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Padding="15,0"   />
+                            <Label Text="{Binding Username}" VerticalOptions="Center"  Padding="15,5,0,5"/>
                             <StackLayout.GestureRecognizers>
-                                <!--<TapGestureRecognizer >
-                            </TapGestureRecognizer>-->
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped">
+                                </TapGestureRecognizer>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </DataTemplate>

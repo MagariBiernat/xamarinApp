@@ -20,16 +20,22 @@ namespace XamarinProject
         {
         }
 
-        protected override void OnSleep()
+        protected override async void OnSleep()
         {
             DataStore data = new DataStore();
+
+            if (Application.Current.Properties["username"].ToString() != null)
+                await data.userIsOffline(Application.Current.Properties["username"].ToString());
 
             // send query to make user offline
         }
 
-        protected override void OnResume()
+        protected override async void OnResume()
         {
             DataStore data = new DataStore();
+
+            if (Application.Current.Properties["username"].ToString() != null)
+                await data.userIsOnline(Application.Current.Properties["username"].ToString());
 
             //send query to make user online again
 

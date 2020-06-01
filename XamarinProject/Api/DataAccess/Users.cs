@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Api.DataAccess
 {
     [Table("Users")]
-    public class Users  
+    public class Users
     {
         [Column("User_ID")]
         [Key]
@@ -32,6 +32,6 @@ namespace Api.DataAccess
         public string IsOnline { get; set; }
 
         [ForeignKey("User_ID")]
-        public virtual List<Messages> Messages { get; set; }
+        public virtual List<Msgs> Msgs { get; set; }
     }
 }

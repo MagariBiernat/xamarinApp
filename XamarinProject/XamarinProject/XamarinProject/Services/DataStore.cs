@@ -48,7 +48,6 @@ namespace XamarinProject.Services
             {
                 var serializedUser = JsonConvert.SerializeObject(user);
 
-
                 var response = await _client.PostAsync($"Users", new StringContent(serializedUser, Encoding.UTF8, "application/json"));
 
                 if (response.StatusCode == System.Net.HttpStatusCode.Accepted)
@@ -75,7 +74,44 @@ namespace XamarinProject.Services
             return new List<UserProfileModel>();
         }
 
+
+        //update user is offline
+        //on every sleep send
+
+        public async Task userIsOffline(string username)
+        {
+            if(username != null || !IsConnected)
+            {
+                await _client.GetAsync($"Users/offline/{username}");
+            }
+        }
+
+        //is online
+
+        public async Task userIsOnline(string username)
+        {
+            if (username != null || !IsConnected)
+            {
+                await _client.GetAsync($"Users/online/{username}");
+            }
+        }
+
         //messages..
+
+        public async Task<bool> SendAMessage(MessageModel message)
+        {
+            if( (message != null) || !IsConnected)
+            {
+                var serializedMessage = JsonConvert.SerializeObject(message);
+
+                var response = await _client.PostAsync($"Messages", new StringContent(serializedMessage, Encoding.UTF8, "application/json"));
+
+            }
+
+
+
+            return false;
+        }
 
         public HttpClientHandler GetInsecureHandler()
         {

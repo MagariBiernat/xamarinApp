@@ -34,5 +34,14 @@ namespace XamarinProject.Views
         {
             MessagingCenter.Send(this, "logout");
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            base.OnBackButtonPressed();
+
+            MessagingCenter.Send(this, "logout");
+
+            return true;
+        }
     }
 }

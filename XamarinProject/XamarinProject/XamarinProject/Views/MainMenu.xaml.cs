@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
+using XamarinProject.Services;
 
 namespace XamarinProject.Views
 {
@@ -15,19 +16,37 @@ namespace XamarinProject.Views
     {
         public string Username { get; set; }
 
-
+        DataStore Data;
         public MainMenu(string _username)
         {
             InitializeComponent();
 
             Username = _username;
 
+            Data = new DataStore();
 
             MessagingCenter.Subscribe<ProfilePage>(this, "logout", async (obj) =>
             {
-                await Navigation.PopAsync();
+                await logOut();
             });
 
+            MessagingCenter.Subscribe<ItemsPage>(this, "logout", async (obj) =>
+            {
+                await logOut();
+            });
+
+
+
+        }
+
+        private async Task logOut()
+        {
+            if (Application.Current.Properties["username"].ToString() != null)
+                await Data.userIsOnline(Application.Current.Properties["username"].ToString());
+
+            Application.Current.Properties["username"] = null;
+
+            await Navigation.PopAsync();
         }
 
         protected override void OnCurrentPageChanged()

@@ -22,27 +22,29 @@ namespace XamarinProject.Views
         {
             InitializeComponent();
 
-            Username = "defalt";
             sLayout = layout;
             MessagingCenter.Subscribe<MainMenu, string>(this, "usernameChat", (obj, message) =>
             {
                 this.Username = message;
             });
 
-
             BindingContext = viewModel = new ItemsViewModel();
         }
 
         protected override void OnAppearing()
         {
-            if(viewModel.Items.Count == 0)
-            {
-                sLayout.IsVisible = true;
-            } else
-                sLayout.IsVisible = false;
-
-            // viewModel.IsBusy = true;
+            viewModel.IsBusy = true;
+            
             base.OnAppearing();
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            base.OnBackButtonPressed();
+
+            MessagingCenter.Send(this, "logout");
+
+            return true;
         }
 
         // tap existing chat and move to chat page

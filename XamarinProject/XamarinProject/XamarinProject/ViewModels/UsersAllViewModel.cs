@@ -17,13 +17,14 @@ namespace XamarinProject.ViewModels
 
         public string Username { get; set; }
 
-        public ObservableCollection<UserProfileModel> Items;
+        public ObservableCollection<UserProfileModel> Items { get; set; }
 
         public Command LoadItemsCommand { get; set; }
 
 
         public UsersAllViewModel(bool isOnline)
         {
+            Title = "All users";
 
             isOnlineModel = isOnline;
 
@@ -64,7 +65,7 @@ namespace XamarinProject.ViewModels
             }
             finally
             {
-                isVisible = !(Items.Count > 0);
+                isVisible = Items.Count == 0;
                 IsBusy = false;
             }
         }
