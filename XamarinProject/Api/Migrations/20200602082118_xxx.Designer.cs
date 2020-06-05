@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200601095632_init3")]
-    partial class init3
+    [Migration("20200602082118_xxx")]
+    partial class xxx
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,16 +29,18 @@ namespace Api.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("From")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("Read")
                         .HasColumnType("bit");
 
+                    b.Property<string>("To")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("User_ID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("User_ID_From")
-                        .HasColumnType("int");
-
-                    b.Property<int>("User_ID_To")
                         .HasColumnType("int");
 
                     b.Property<string>("Value")

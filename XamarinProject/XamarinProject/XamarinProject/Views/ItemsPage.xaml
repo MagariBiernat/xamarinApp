@@ -22,7 +22,7 @@
                 />
         </StackLayout>
 
-        <RefreshView IsVisible="true" IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
+        <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
             <CollectionView x:Name="ItemsCollectionView"
                 ItemsSource="{Binding Items}">
                 <d:CollectionView.ItemsSource>
@@ -39,11 +39,12 @@
                     <DataTemplate>
                         <StackLayout Padding="15" HeightRequest="55" Orientation="Horizontal">
                             <Image Source="notify" />
-                            <Label Text="New msg from :" VerticalOptions="Center"  />
-                            <Label VerticalOptions="Center" Text="{Binding From}" TextColor="Black" />
+                            <Label VerticalOptions="Center" Text="{Binding}" FontSize="Large" TextColor="Black" />
                             <StackLayout.GestureRecognizers>
-                                <!--<TapGestureRecognizer >
-                            </TapGestureRecognizer>-->
+                                <TapGestureRecognizer 
+                                     NumberOfTapsRequired="1"
+                                     Tapped="TapGestureRecognizer_Tapped">
+                                </TapGestureRecognizer>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </DataTemplate>

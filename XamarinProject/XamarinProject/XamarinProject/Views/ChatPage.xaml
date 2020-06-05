@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinProject.Views.ChatPage"
+             Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" x:Name="Cancel" Clicked="Cancel_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+    <RefreshView Grid.Row="0" IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
+        <CollectionView ScrollToRequested="ItemsCollectionView_ScrollToRequested" x:Name="ItemsCollectionView"
+                ItemsSource="{Binding Items}">
+            <d:CollectionView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>First Item</x:String>
+                    <x:String>Second Item</x:String>
+                    <x:String>Third Item</x:String>
+                    <x:String>Fourth Item</x:String>
+                    <x:String>Fifth Item</x:String>
+                    <x:String>Sixth Item</x:String>
+                    </x:Array>
+            </d:CollectionView.ItemsSource>
+            <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="0, 5" Padding="0" >
+                            <FlexLayout  Direction="{Binding Direction}" MinimumHeightRequest="55" Padding="10">
+                                <Image  HeightRequest="55" Source="chat.png" />
+                                <Label Text="{Binding Value}" WidthRequest="220" VerticalOptions="CenterAndExpand"  Padding="25,5,25,5"/>
+                            </FlexLayout>
+                        </Frame>
+                    </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+        <Button x:Name="ButtonAnswer" Clicked="ButtonAnswer_Clicked" Grid.Row="1" BackgroundColor="Transparent" Text="Answer" TextColor="Black" FontSize="Large" FontAttributes="Bold , Italic "/>
+    </Grid>
+</ContentPage>

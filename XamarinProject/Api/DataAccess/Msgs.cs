@@ -22,10 +22,10 @@ namespace Api.DataAccess
         public string Value { get; set; }
 
         [Required]
-        public int User_ID_From { get; set; }
+        public string From { get; set; }
 
         [Required]
-        public int User_ID_To { get; set; }
+        public string To { get; set; }
 
         [Required]
         public bool Read { get; set; }

@@ -39,9 +39,28 @@ namespace XamarinProject.Views
         {
             base.OnBackButtonPressed();
 
-            MessagingCenter.Send(this, "logout");
+
+            try
+            {
+                if (Application.Current.Properties["username"].ToString() != null)
+                    new Task(async () =>
+                    {
+                        await viewModel.DataService.userIsOffline(Application.Current.Properties["username"].ToString());
+                    }
+                    );
+                Application.Current.Properties["username"] = null;
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                MessagingCenter.Send(this, "logout");
+
+            }
 
             return true;
+
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Api.Migrations
 {
-    public partial class init3 : Migration
+    public partial class xxx : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,8 +28,8 @@ namespace Api.Migrations
                     Message_ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Value = table.Column<string>(maxLength: 1000, nullable: false),
-                    User_ID_From = table.Column<int>(nullable: false),
-                    User_ID_To = table.Column<int>(nullable: false),
+                    From = table.Column<string>(nullable: false),
+                    To = table.Column<string>(nullable: false),
                     Read = table.Column<bool>(nullable: false),
                     User_ID = table.Column<int>(nullable: true)
                 },

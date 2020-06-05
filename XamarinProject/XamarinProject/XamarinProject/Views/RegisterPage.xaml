@@ -45,6 +45,7 @@
                         Padding="0"
                         BackgroundColor="AliceBlue">
                         <Entry
+                            IsPassword="True"
                          x:Name="passwordFirstEntry"
                          HorizontalTextAlignment="Start"
                          PlaceholderColor="#c62828"
@@ -57,6 +58,7 @@
                         Padding="0"
                         BackgroundColor="AliceBlue">
                         <Entry
+                            IsPassword="True"
                          x:Name="passwordSecondEntry"
                          HorizontalTextAlignment="Start"
                          PlaceholderColor="#c62828"

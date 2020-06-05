@@ -27,16 +27,18 @@ namespace Api.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("From")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("Read")
                         .HasColumnType("bit");
 
+                    b.Property<string>("To")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("User_ID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("User_ID_From")
-                        .HasColumnType("int");
-
-                    b.Property<int>("User_ID_To")
                         .HasColumnType("int");
 
                     b.Property<string>("Value")

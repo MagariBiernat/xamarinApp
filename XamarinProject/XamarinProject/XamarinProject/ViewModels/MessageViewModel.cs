@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Android.Content.Res;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,7 +38,8 @@ namespace XamarinProject.ViewModels
             {
                 Value = MessageValue,
                 From = Username,
-                To = Item.Username
+                To = Item.Username,
+                Read = false
             };
 
             try

@@ -27,42 +27,30 @@ namespace XamarinProject.Views
 
             MessagingCenter.Subscribe<ProfilePage>(this, "logout", async (obj) =>
             {
-                await logOut();
+                try
+                {
+                    if (Application.Current.Properties["username"].ToString() != null)
+                        await Data.userIsOffline(Application.Current.Properties["username"].ToString());
+                    Application.Current.Properties["username"] = null;
+                }
+                catch (Exception ex) { }
+                finally
+                {
+                    await Navigation.PopAsync();
+                }
             });
 
             MessagingCenter.Subscribe<ItemsPage>(this, "logout", async (obj) =>
             {
-                await logOut();
+                await Navigation.PopAsync();
             });
 
 
 
+
         }
 
-        private async Task logOut()
-        {
-            if (Application.Current.Properties["username"].ToString() != null)
-                await Data.userIsOnline(Application.Current.Properties["username"].ToString());
 
-            Application.Current.Properties["username"] = null;
-
-            await Navigation.PopAsync();
-        }
-
-        protected override void OnCurrentPageChanged()
-        {
-            base.OnCurrentPageChanged();
-
-            if (this.CurrentPage.Title == "Chat")
-            {
-                MessagingCenter.Send(this, "usernameChat", Username);
-            }
-            if(this.CurrentPage.Title == "Profile")
-            {
-                MessagingCenter.Send(this, "usernameProfile", Username);
-            }
-            
-        }
 
 
 

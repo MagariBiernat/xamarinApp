@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Android.OS;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -26,7 +27,7 @@ namespace XamarinProject.Services
 
         public async Task<bool> LogInAsync(User user)
         {
-            if ( user != null || !IsConnected)
+            if (user != null || !IsConnected)
             {
                 var serializedUser = JsonConvert.SerializeObject(user);
                 //fix url
@@ -36,7 +37,7 @@ namespace XamarinProject.Services
                     return true;
                 }
             }
-         
+
             return false;
         }
 
@@ -44,7 +45,7 @@ namespace XamarinProject.Services
 
         public async Task<int> RegisterUser(User user)
         {
-            if( user!= null || !IsConnected)
+            if (user != null || !IsConnected)
             {
                 var serializedUser = JsonConvert.SerializeObject(user);
 
@@ -52,7 +53,7 @@ namespace XamarinProject.Services
 
                 if (response.StatusCode == System.Net.HttpStatusCode.Accepted)
                     return 1;
-                else if(response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                else if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
                 {
                     return 0;
                 }
@@ -66,7 +67,7 @@ namespace XamarinProject.Services
         public async Task<IEnumerable<UserProfileModel>> GetAllUsersAsync()
         {
             var response = await _client.GetAsync($"Users");
-            if(response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<List<UserProfileModel>>(content);
@@ -80,7 +81,7 @@ namespace XamarinProject.Services
 
         public async Task userIsOffline(string username)
         {
-            if(username != null || !IsConnected)
+            if (username != null || !IsConnected)
             {
                 await _client.GetAsync($"Users/offline/{username}");
             }
@@ -100,11 +101,11 @@ namespace XamarinProject.Services
 
         public async Task<bool> SendAMessage(MessageModel message)
         {
-            if ((message != null) || !IsConnected)
+            if ( message != null || !IsConnected)
             {
                 var serializedMessage = JsonConvert.SerializeObject(message);
 
-                var response = await _client.PostAsync($"Messages", new StringContent(serializedMessage, Encoding.UTF8, "application/json"));
+                var response = await _client.PostAsync($"Msgs", new StringContent(serializedMessage, Encoding.UTF8, "application/json"));
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -116,11 +117,46 @@ namespace XamarinProject.Services
             return false;
         }
 
+
+        public async Task<IEnumerable<MessageModel>> ReceiveUnreadMessages(string username, string usernameFrom)
+        {
+            if (username != "" || !IsConnected)
+            {
+                var response = await _client.GetAsync($"Msgs/messages/{username}/{usernameFrom}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+
+                    return JsonConvert.DeserializeObject<List<MessageModel>>(content);
+                }
+            }
+
+            return new List<MessageModel>();
+        }
+
+        public async Task<IEnumerable<string>> ReceiveMessages(string usernameTo)
+        {
+            if (usernameTo != "" || !IsConnected)
+            {
+                var response = await _client.GetAsync($"Msgs/{usernameTo}");
+
+                if(response.IsSuccessStatusCode)
+                {
+                        var content = await response.Content.ReadAsStringAsync();
+
+                    return JsonConvert.DeserializeObject<List<string>>(content);
+                }
+            }
+
+            return new List<string>();
+        }
+
         public HttpClientHandler GetInsecureHandler()
         {
             HttpClientHandler handler = new HttpClientHandler();
             handler.ServerCertificateCustomValidationCallback = (message, cert, chain,
-           errors) =>
+            errors) =>
             {
                 return true;
             };

@@ -146,8 +146,7 @@ namespace Api.Controllers
 
 
 
-        [Route("/offline")]
-        [HttpGet("{username}")]
+        [HttpGet("offline/{username}")]
         public async Task UserIsOffline(string username)
         {
             var user = _context.Users.First(x => x.Username == username);
@@ -159,8 +158,7 @@ namespace Api.Controllers
             }
         }
 
-        [Route("/online")]
-        [HttpGet("{username}")]
+        [HttpGet("online/{username}")]
         public async Task UserIsOnline(string username)
         {
             var user = _context.Users.First(x => x.Username == username);

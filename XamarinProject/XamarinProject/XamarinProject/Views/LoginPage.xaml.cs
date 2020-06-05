@@ -28,6 +28,8 @@ namespace XamarinProject.Views
             viewModel = new LoginViewModel();
 
             BindingContext = viewModel;
+
+            
         }
 
         private async void LogInButton_Clicked(object sender, EventArgs e)
@@ -43,7 +45,7 @@ namespace XamarinProject.Views
                 }
                 else
                 {
-                    await DisplayAlert("Error", "Wrong email or password", "Ok");
+                    await DisplayAlert("Error", "Wrong username or password", "Ok");
                 }
             }
             else
@@ -61,7 +63,7 @@ namespace XamarinProject.Views
 
         private bool validateIfEmpty()
         {
-            if (username.Text.ToString() != "" && password.Text.ToString() != "")
+            if (username.Text.ToString().Length > 0 && password.Text.ToString().Length > 0 )
                 return true;
             return false;
         }

@@ -34,7 +34,15 @@ namespace XamarinProject.Views
 
         private async void sendMessage_Clicked(object sender, EventArgs e)
         {
-            await DisplayAlert("tak!", $"Your message : {viewModel.MessageValue}, to {viewModel.Item.Username}", "ok");
+            if (viewModel.MessageValue != "")
+            {
+                viewModel.SendMessage.Execute(true);
+                await Navigation.PopModalAsync();
+            }
+            else
+                await DisplayAlert("error", "please type something", "aight");
+
+           
         }
     }
 }
