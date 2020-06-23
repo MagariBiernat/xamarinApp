@@ -205,4 +205,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\warning.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\gitAvatar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\arch.png" />
+  </ItemGroup>
 </Project>

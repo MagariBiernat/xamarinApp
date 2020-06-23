@@ -49,7 +49,7 @@ namespace XamarinProject.Views
 
         private void ItemsCollectionView_ScrollToRequested(object sender, ScrollToRequestEventArgs e)
         {
-            ItemsCollectionView.ScrollTo(viewModel.Items)
+           // ItemsCollectionView.ScrollTo(viewModel.Items)
         }
     }
 }

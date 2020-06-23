@@ -18,7 +18,7 @@ namespace XamarinProject.Services
         public DataStore()
         {
             _client = new HttpClient(GetInsecureHandler());
-            _client.BaseAddress = new Uri($"https://192.168.1.106:45455/api/");
+            _client.BaseAddress = new Uri($"https://192.168.1.107:45455/api/");
         }
 
         bool IsConnected => Connectivity.NetworkAccess == NetworkAccess.Internet;

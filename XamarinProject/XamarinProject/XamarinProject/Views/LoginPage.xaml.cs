@@ -15,15 +15,10 @@ namespace XamarinProject.Views
     public partial class LoginPage : ContentPage
     {
         LoginViewModel viewModel;
-        Entry username, password;
 
         public LoginPage()
         {
             InitializeComponent();
-
-            //hooks
-            username = usernameEntry;
-            password = passwordEntry;
 
             viewModel = new LoginViewModel();
 
@@ -32,13 +27,24 @@ namespace XamarinProject.Views
             
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+
+            usernameEntry.Text = "";
+            passwordEntry.Text = "";
+
+        }
+
+
         private async void LogInButton_Clicked(object sender, EventArgs e)
         {
             if(validateIfEmpty())
             {
-                if (await viewModel.ExecuteLoggingIn( username.Text.ToString(), password.Text.ToString() ))
+                if (await viewModel.ExecuteLoggingIn( usernameEntry.Text.ToString(), passwordEntry.Text.ToString() ))
                 {
-                    string Username = username.Text.ToString();
+                    string Username = usernameEntry.Text.ToString();
                     Application.Current.Properties["username"] = Username;
                     var page = new MainMenu(Username);
                     await Navigation.PushAsync(page);
@@ -63,7 +69,7 @@ namespace XamarinProject.Views
 
         private bool validateIfEmpty()
         {
-            if (username.Text.ToString().Length > 0 && password.Text.ToString().Length > 0 )
+            if (usernameEntry.Text.ToString().Length > 0 && passwordEntry.Text.ToString().Length > 0 )
                 return true;
             return false;
         }

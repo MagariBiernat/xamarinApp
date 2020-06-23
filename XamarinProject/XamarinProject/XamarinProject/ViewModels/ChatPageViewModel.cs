@@ -52,7 +52,8 @@ namespace XamarinProject.ViewModels
             }
             finally
             {
-                await ExecuteLoadAllMessages();
+                IsBusy = true;
+                //await ExecuteLoadAllMessages();
             }
         }
 

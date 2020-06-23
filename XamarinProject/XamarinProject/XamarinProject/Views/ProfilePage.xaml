@@ -4,7 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="XamarinProject.Views.ProfilePage">
+             x:Class="XamarinProject.Views.ProfilePage"
+             BackgroundColor="White">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Log Out" x:Name="LogOut" Clicked="LogOut_Clicked" />
@@ -42,7 +43,7 @@
                        BorderColor="#c62828"
                        Padding="0"
                        CornerRadius="5">
-                            <Button BackgroundColor="Transparent" Text="About App"/>
+                            <Button BackgroundColor="Transparent" x:Name="goAbout" Clicked="goAbout_Clicked" Text="About App"/>
                         </Frame>
 
                       

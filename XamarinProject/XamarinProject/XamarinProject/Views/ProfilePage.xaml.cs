@@ -62,5 +62,10 @@ namespace XamarinProject.Views
             return true;
 
         }
+
+        private async void goAbout_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new AboutPage());
+        }
     }
 }

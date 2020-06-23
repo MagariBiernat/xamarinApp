@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="XamarinProject.Views.ChatPage"
+             BackgroundColor="White"
              Title="{Binding Title}">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Cancel" x:Name="Cancel" Clicked="Cancel_Clicked" />

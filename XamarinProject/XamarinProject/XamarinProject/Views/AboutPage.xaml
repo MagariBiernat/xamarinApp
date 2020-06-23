@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinProject.Views.AboutPage"
+             NavigationPage.HasNavigationBar="False"
+             
+             BackgroundColor="White">
+    <ContentPage.Content>
+        <ScrollView Padding="0, 20, 0, 60">
+            <StackLayout>
+                <Grid >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button 
+                        Grid.Column="0"
+                        Margin="25 ,10, 0, 0"
+                        Text="Back!"
+                        BackgroundColor="#c62828"
+                        TextColor="White"
+                        FontSize="Large"
+                        x:Name="goBack"
+                        Clicked="goBack_Clicked"
+                        CornerRadius="10"
+                        />
+
+
+                </Grid>
+
+                <Image 
+                    Source="gitAvatar.png"
+                    Margin="0, 15"
+                    HeightRequest="140"
+                    HorizontalOptions="Center"
+                />
+                <StackLayout Margin="0, 30">
+                    <Label 
+                    Text="Imie i Nazwisko"
+                    FontSize="Small"
+                    TextColor="Black"
+                    FontAttributes="Italic, Bold"
+                    HorizontalOptions="Center"
+                    />
+                    <Label 
+                    Text='Bartlomiej "Magari" Biernat'
+                    FontSize="Large"
+                    TextColor="#c62828"
+                    HorizontalOptions="Center"/>
+                </StackLayout>
+
+                <Frame
+                    HeightRequest="0.5"
+                    Padding="0"
+                    WidthRequest="100"
+                Margin="60, 10, 60, 10"
+                    BackgroundColor="black"
+                    />
+
+                <StackLayout>
+                    <Label 
+                    Text="Album"
+                    FontSize="Small"
+                    TextColor="Black"
+                    FontAttributes="Italic, Bold"
+                    HorizontalOptions="Center"
+                    />
+                    <Label 
+                    Text="60067"
+                    FontSize="Large"
+                    TextColor="#c62828"
+                    HorizontalOptions="Center"/>
+                </StackLayout>
+                
+                
+                <Frame
+                    HeightRequest="0.5"
+                    Padding="0"
+                    WidthRequest="100"
+                Margin="60, 10, 60, 10"
+                    BackgroundColor="black"
+                    />
+
+                <StackLayout>
+                    <Label 
+                    Text="Github"
+                    FontSize="Small"
+                    FontAttributes="Italic, Bold"
+                    TextColor="Black"
+                    HorizontalOptions="Center"
+                    />
+                    <Label 
+                    Text="github.com/MagariBiernat"
+                    FontSize="Large"
+                    TextColor="#c62828"
+                    HorizontalOptions="Center"
+                        Margin="0, 5"/>
+
+                    <Frame
+                    HeightRequest="0.5"
+                    Padding="0"
+                    WidthRequest="100"
+                Margin="60, 10, 60, 10"
+                    BackgroundColor="black"
+                    />
+
+                    <Label 
+                    Text="Zainteresowania"
+                    FontSize="Small"
+                    FontAttributes="Italic, Bold"
+                    TextColor="Black"
+                    HorizontalOptions="Center"
+                    />
+                    <Label 
+                    Text="HTML5, CSS3, Javascript, "
+                    FontSize="Large"
+                    TextColor="#c62828"
+                    HorizontalOptions="Center"
+                        Margin="0, 5"/>
+                    
+                    <Label 
+                    Text="React, Node, Kotlin "
+                    FontSize="Large"
+                    TextColor="#c62828"
+                    HorizontalOptions="Center"
+                        Margin="0, 5"/>
+
+                    <Label 
+                    Text="Path Of Exile, Apex Legends "
+                    FontSize="Large"
+                    TextColor="#c62828"
+                    HorizontalOptions="Center"
+                        Margin="0, 5"/>
+
+                    <Frame
+                    HeightRequest="0.5"
+                    Padding="0"
+                    WidthRequest="100"
+                Margin="60, 10, 60, 10"
+                    BackgroundColor="black"
+                    />
+
+                    <Image 
+                    Source="arch.png"
+                    Margin="0, 15"
+                    HeightRequest="140"
+                    HorizontalOptions="Center"
+                />
+
+                    <Label 
+                    Text="I use arch btw"
+                    FontSize="Large"
+                    FontAttributes="Italic, Bold"
+                    TextColor="Blue"
+                    HorizontalOptions="Center"
+                    />
+
+
+
+
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
